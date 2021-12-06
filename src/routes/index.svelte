@@ -1,6 +1,5 @@
 <script>
 	import {onMount} from 'svelte';
-  import TileDate from './lib/TileDate.svelte'
 	 const map_month = new Map();
 	map_month.set(0,'January');
 	map_month.set(1,'February');
@@ -239,7 +238,13 @@ previous year
 	
 {#each display_calendar as week}
 	{#each week as day}
-		<TileDate {...day}/>
+		{#if day.enable}
+			<span class= "date">{day.id}</span>
+		{:else if day.isToday}
+				<span class= "date.today">{day.id}</span> 
+		{:else}
+			<span class= "date.other">{day.id}</span> 
+		{/if}
 			
 	{/each}
 	
@@ -280,7 +285,26 @@ h4 {
 		margin-bottom: 0.5rem;
 		opacity: 0.6;
 	}
-
+	
+	.date {
+		height: 50px;
+		font-size: 16px;
+		letter-spacing: -1px;
+		border: 1px solid #e6e4e4;
+		padding-right: 4px;
+		font-weight: 700;
+		padding: 0.5rem;
+	}
+	
+	.date.today {
+		color: #5286fa;
+		background: #c4d9fd;
+		border-color: currentColor;
+	}
+	
+	.date.other {
+		opacity: 0.2;
+	}
 
 
 </style>
