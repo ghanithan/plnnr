@@ -1,0 +1,44 @@
+{
+    "name": "Plnnr",
+    "short_name": "Plnnr",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#fdfdfd",
+    "theme_color": "#db4938",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+          "src": "/plnnr/images/icons/endless-16px.png",
+          "type": "image/png", "sizes": "16x16"
+        },
+        {
+          "src":  "/plnnr/images/icons/endless-24px.png",
+          "type": "image/png", "sizes": "24x24"
+        },
+        {
+          "src":  "/plnnr/images/icons/endless-32px.png",
+          "type": "image/png","sizes": "32x32"
+        },
+        {
+          "src":  "/plnnr/images/icons/endless-64px.png",
+          "type": "image/png", "sizes": "64x64"
+        },
+        {
+          "src":  "/plnnr/images/icons/endless-128px.png",
+          "type": "image/png", "sizes": "128x128"
+        },
+        {
+          "src":  "/plnnr/images/icons/endless-256px.png",
+          "type": "image/png", "sizes": "256x256"
+        },
+        {
+          "src":  "/plnnr/images/icons/endless-512px.png",
+          "type": "image/png", "sizes": "512x512"
+        },
+        {
+          "src":  "/plnnr/images/icons/endless-256px-square.png",
+          "type": "image/png", "sizes": "256x256"
+        }
+      ]
+  }
+  
