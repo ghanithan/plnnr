@@ -30,7 +30,7 @@
 							
 			if ("serviceWorker" in navigator) {
 			//	alert("yes");
-			console.log(...performance.getEntriesByType('resource').map((r) => r.name);
+			console.log(...performance.getEntriesByType('resource').map((r) => r.name));
 				window.addEventListener("load", function() {
 				navigator.serviceWorker
 					.register("/plnnr/serviceWorker.js")
