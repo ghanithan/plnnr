@@ -46,7 +46,7 @@
                     ...performance.getEntriesByType('resource').map((r) => r.name)
                 ]
             };
-            registration.installing.postMessage(data);
+            navigator.serviceWorker.controller.postMessage(data);
         })
         .catch((err) => console.log('SW registration FAIL:', err));
 			}

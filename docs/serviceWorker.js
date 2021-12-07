@@ -1,7 +1,6 @@
 const staticPlnnr = "plnnr-pwa-v1"
 const assets = [
-  "index.html",
-  "_app/*/**"
+  "index.html"
 ]
 /*
 self.addEventListener("install", installEvent => {

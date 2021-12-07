@@ -1,14 +1,8 @@
-
-<svelte:head>
-	<!-- elements go here -->
-</svelte:head>
 <script>
 	import {onMount} from 'svelte';
-
-
-   
-
-	 const map_month = new Map();
+	import TileDate from './TileDate.svelte';
+	
+	const map_month = new Map();
 	map_month.set(0,'January');
 	map_month.set(1,'February');
 	map_month.set(2, 'March');
@@ -23,17 +17,25 @@
 	map_month.set(11,'December');
 
  const map_days = new Map();
-	map_days.set(0,'Sunday');
+/*	map_days.set(0,'Sunday');
 	map_days.set(1,'Monday');
 	map_days.set(2,'Tuesday');
 	map_days.set(3,'Wednesday');
 	map_days.set(4,'Thursday');
 	map_days.set(5,'Friday');
-	map_days.set(6,'Saturday');
+	map_days.set(6,'Saturday');*/
+	
+	map_days.set(0,'Sun');
+	map_days.set(1,'Mon');
+	map_days.set(2,'Tue');
+	map_days.set(3,'Wed');
+	map_days.set(4,'Thu');
+	map_days.set(5,'Fri');
+	map_days.set(6,'Sat');
 	
 	let week_label = [ ...map_days.values() ]; 
 	//console.log(week_label);
-	
+	let calendarDiv;
 
     let date,day;
 		let today_date,today_month,today_year;
@@ -48,7 +50,9 @@
 	
 	let display_calendar = [];
 
+	
 
+	
    date = new Date();
 
    $: day = date.getDay();
@@ -129,9 +133,11 @@
 						state = false;
 					}
 				}
-				if(inter_today == false && state == true && today_date == itertate_date){
+				if(inter_today == true && state == true && today_date == itertate_date){
 					today = true;
 					console.log('hi');
+				}else{
+					today= false;
 				}
 			
 				local_week_display = [...local_week_display, {id: itertate_date,content: 'note', enable: state, isToday: today, day: week}];
@@ -172,6 +178,9 @@
 	}
 
 	onMount(() => {
+		$:{ display_calendar = display_calendar;
+			calendarDiv.scrollIntoView(true);
+		}
 		const interval = setInterval(() => {
 			date = new Date();
 		}, 1000);
@@ -188,6 +197,7 @@
 		 calendar_month = 11;
 		 calendar_year -= 1;
 	 }
+
  }
 
 function nextMonth() {
@@ -197,6 +207,7 @@ function nextMonth() {
 		calendar_month = 0;
 		calendar_year += 1;
 	}
+	
 }
 </script>
 
@@ -220,12 +231,12 @@ previous month
 </button>
 
 
-<button on:click={() => {calendar_year -= 1}}>
+<button on:click={() => {calendar_year -= 1; } }>
 previous year 
 </button>
 
 
-<button on:click={() => {calendar_year += 1}}>
+<button on:click={() => {calendar_year += 1;}}>
 	next year 
 </button>
 
@@ -237,22 +248,17 @@ previous year
 </header>
 
 
-<div class="month">
+<div class="month" bind:this={calendarDiv}>
 
-	
+
 {#each week_label as label}
 	<span class="label">{label}</span>
 {/each}
 	
 {#each display_calendar as week}
 	{#each week as day}
-		{#if day.enable}
-			<span class= "date">{day.id}</span>
-		{:else if day.isToday}
-				<span class= "date.today">{day.id}</span> 
-		{:else}
-			<span class= "date.other">{day.id}</span> 
-		{/if}
+	<TileDate {...day}/>	
+		
 			
 	{/each}
 	
@@ -264,7 +270,7 @@ previous year
 
 header {
 		display: flex;
-		margin: 2rem auto;
+		margin: 1rem auto;
 		align-items: center;
 		justify-content: center;
 		user-select: none;
@@ -286,33 +292,12 @@ h4 {
 		grid-gap: 4px;
 	}
 	
-	.label {
-		font-weight: 300;
+.label {
+		font-weight: 500;
 		text-align: center;
 		text-transform: uppercase;
 		margin-bottom: 0.5rem;
-		opacity: 0.6;
+		opacity: 0.8;
 	}
-	
-	.date {
-		height: 50px;
-		font-size: 16px;
-		letter-spacing: -1px;
-		border: 1px solid #e6e4e4;
-		padding-right: 4px;
-		font-weight: 700;
-		padding: 0.5rem;
-	}
-	
-	.date.today {
-		color: #5286fa;
-		background: #c4d9fd;
-		border-color: currentColor;
-	}
-	
-	.date.other {
-		opacity: 0.2;
-	}
-
 
 </style>
