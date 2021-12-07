@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!-- manifest for PWA -->
 		<link rel="manifest" href="/plnnr/manifest.json?v=5" />
+		<link rel="manifest" href="/plnnr/serviceWorker.js"/>
 		<!-- ios support -->
 		<link rel="apple-touch-icon" href="/plnnr/images/icons/endless-16px.png" />
 		<link rel="apple-touch-icon" href="/plnnr/images/icons/endless-24px.png" />
@@ -65,7 +66,7 @@
 
 <p>trying to build calendar</p>
 
-<p>Tue Dec 07 2021 08:07:22 GMT+0530 (India Standard Time)
+<p>Tue Dec 07 2021 08:55:42 GMT+0530 (India Standard Time)
 <br></p>
 
 
@@ -108,7 +109,7 @@
 				alert("yes");
 				window.addEventListener("load", function() {
 				navigator.serviceWorker
-					.register("/ReflowReader/serviceWorker.js")
+					.register("/plnnr/serviceWorker.js")
 					.then(res => console.log("service worker registered"))
 					.catch(err => console.log("service worker not registered", err))
 				})
