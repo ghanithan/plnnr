@@ -24,7 +24,7 @@
 		<div id="svelte">%svelte.body%</div>
 		<script>
 
-/*
+
 			(async function(){
 
 							
@@ -38,7 +38,8 @@
 					.catch(err => console.log("service worker not registered", err))
 				})
 				
-				navigator.serviceWorker.register('/plnnr/service-worker.js', { scope: '/plnnr/' })
+				
+		/*		navigator.serviceWorker.register('/plnnr/service-worker.js', { scope: '/plnnr/' })
         .then((registration) => {
             const data = {
                 type: 'CACHE_URLS',
@@ -50,9 +51,10 @@
             navigator.serviceWorker.controller.postMessage(data);
         })
         .catch((err) => console.log('SW registration FAIL:', err));
+		*/
 
 			}
-			})();*/
+			})();
 		</script>
 	</body>
 </html>

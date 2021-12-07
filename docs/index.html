@@ -54,10 +54,6 @@
 					}
 				}
 			});
-		</script><script>
-			if ('serviceWorker' in navigator) {
-				navigator.serviceWorker.register('/service-worker.js');
-			}
 		</script>
 	</head>
 	<body>
@@ -66,7 +62,7 @@
 
 <p>trying to build calendar</p>
 
-<p>Tue Dec 07 2021 19:08:11 GMT+0530 (India Standard Time)
+<p>Tue Dec 07 2021 19:23:39 GMT+0530 (India Standard Time)
 <br></p>
 
 
@@ -101,7 +97,7 @@
 		</div>
 		<script>
 
-/*
+
 			(async function(){
 
 							
@@ -115,7 +111,8 @@
 					.catch(err => console.log("service worker not registered", err))
 				})
 				
-				navigator.serviceWorker.register('/plnnr/service-worker.js', { scope: '/plnnr/' })
+				
+		/*		navigator.serviceWorker.register('/plnnr/service-worker.js', { scope: '/plnnr/' })
         .then((registration) => {
             const data = {
                 type: 'CACHE_URLS',
@@ -127,9 +124,10 @@
             navigator.serviceWorker.controller.postMessage(data);
         })
         .catch((err) => console.log('SW registration FAIL:', err));
+		*/
 
 			}
-			})();*/
+			})();
 		</script>
 	</body>
 </html>
