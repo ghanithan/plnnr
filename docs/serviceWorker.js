@@ -20,7 +20,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('message', (event) => {
   if (event.data.type === 'CACHE_URLS') {
       event.waitUntil(
-          caches.open(KEY)
+          caches.open(staticPlnnr)
               .then( (cache) => {
                   return cache.addAll(event.data.payload);
               })
