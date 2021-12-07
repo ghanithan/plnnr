@@ -1,7 +1,6 @@
 const staticPlnnr = "plnnr-pwa-v1"
 const assets = [
-  "index.html",
-  "_app/*/**"
+  "index.html"
 ]
 /*
 self.addEventListener("install", installEvent => {
@@ -20,7 +19,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('message', (event) => {
   if (event.data.type === 'CACHE_URLS') {
       event.waitUntil(
-          caches.open(KEY)
+          caches.open(staticPlnnr)
               .then( (cache) => {
                   return cache.addAll(event.data.payload);
               })
