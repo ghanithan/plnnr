@@ -30,13 +30,25 @@
 							
 			if ("serviceWorker" in navigator) {
 			//	alert("yes");
-			console.log(...performance.getEntriesByType('resource').map((r) => r.name));
+		/*	console.log(...performance.getEntriesByType('resource').map((r) => r.name));
 				window.addEventListener("load", function() {
 				navigator.serviceWorker
 					.register("/plnnr/serviceWorker.js")
 					.then(res => console.log("service worker registered"))
 					.catch(err => console.log("service worker not registered", err))
-				})
+				})*/
+				navigator.serviceWorker.register('/serviceWorker.js', { scope: '/' })
+        .then((registration) => {
+            const data = {
+                type: 'CACHE_URLS',
+                payload: [
+                    location.href,
+                    ...performance.getEntriesByType('resource').map((r) => r.name)
+                ]
+            };
+            registration.installing.postMessage(data);
+        })
+        .catch((err) => console.log('SW registration FAIL:', err));
 			}
 			})();
 		</script>

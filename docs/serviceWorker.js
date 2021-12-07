@@ -3,14 +3,30 @@ const assets = [
   "index.html",
   "_app/*/**"
 ]
-
+/*
 self.addEventListener("install", installEvent => {
   installEvent.waitUntil(
     caches.open(staticPlnnr).then(cache => {
       cache.addAll(assets)
     })
   )
-})
+})*/
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(self.skipWaiting());
+});
+
+
+self.addEventListener('message', (event) => {
+  if (event.data.type === 'CACHE_URLS') {
+      event.waitUntil(
+          caches.open(KEY)
+              .then( (cache) => {
+                  return cache.addAll(event.data.payload);
+              })
+      );
+  }
+});
 
 self.addEventListener("fetch", fetchEvent => {
     fetchEvent.respondWith(
