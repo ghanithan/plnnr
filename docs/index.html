@@ -21,15 +21,15 @@
 
 		
 
-		<link rel="modulepreload" href="/plnnr/_app/start-296335b0.js">
+		<link rel="modulepreload" href="/plnnr/_app/start-83604ce8.js">
 		<link rel="modulepreload" href="/plnnr/_app/chunks/vendor-cd831ead.js">
 		<link rel="modulepreload" href="/plnnr/_app/layout.svelte-f02ae38f.js">
-		<link rel="modulepreload" href="/plnnr/_app/pages/index.svelte-7b21dae4.js">
+		<link rel="modulepreload" href="/plnnr/_app/pages/index.svelte-8dbbab98.js">
 		<link rel="stylesheet" href="/plnnr/_app/assets/start-61d1577b.css">
 		<link rel="stylesheet" href="/plnnr/_app/assets/pages/index.svelte-ace67a73.css">
 
 		<script type="module">
-			import { start } from "/plnnr/_app/start-296335b0.js";
+			import { start } from "/plnnr/_app/start-83604ce8.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/plnnr","assets":""},
@@ -43,7 +43,7 @@
 					error: null,
 					nodes: [
 						import("/plnnr/_app/layout.svelte-f02ae38f.js"),
-						import("/plnnr/_app/pages/index.svelte-7b21dae4.js")
+						import("/plnnr/_app/pages/index.svelte-8dbbab98.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -59,9 +59,13 @@
 		<div id="svelte">
 
 
+
+
+
+
 <p>trying to build calendar</p>
 
-<p>Mon Dec 06 2021 21:31:31 GMT+0530 (India Standard Time)
+<p>Tue Dec 07 2021 08:07:22 GMT+0530 (India Standard Time)
 <br></p>
 
 
@@ -94,5 +98,22 @@
 
 			
 		</div>
+		<script>
+
+
+			(async function(){
+
+							
+			if ("serviceWorker" in navigator) {
+				alert("yes");
+				window.addEventListener("load", function() {
+				navigator.serviceWorker
+					.register("/ReflowReader/serviceWorker.js")
+					.then(res => console.log("service worker registered"))
+					.catch(err => console.log("service worker not registered", err))
+				})
+			}
+			})();
+		</script>
 	</body>
 </html>

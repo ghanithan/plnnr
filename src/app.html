@@ -21,5 +21,22 @@
 	</head>
 	<body>
 		<div id="svelte">%svelte.body%</div>
+		<script>
+
+
+			(async function(){
+
+							
+			if ("serviceWorker" in navigator) {
+				alert("yes");
+				window.addEventListener("load", function() {
+				navigator.serviceWorker
+					.register("/ReflowReader/serviceWorker.js")
+					.then(res => console.log("service worker registered"))
+					.catch(err => console.log("service worker not registered", err))
+				})
+			}
+			})();
+		</script>
 	</body>
 </html>

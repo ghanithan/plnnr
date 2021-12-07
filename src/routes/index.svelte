@@ -1,5 +1,13 @@
+
+<svelte:head>
+	<!-- elements go here -->
+</svelte:head>
 <script>
 	import {onMount} from 'svelte';
+
+
+   
+
 	 const map_month = new Map();
 	map_month.set(0,'January');
 	map_month.set(1,'February');

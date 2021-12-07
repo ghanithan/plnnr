@@ -1,13 +1,12 @@
-const staticReflowReader = "reflow-reader-pwa-v1"
+const staticPlnnr = "plnnr-pwa-v1"
 const assets = [
   "index.html",
-  "css/style.css",
-  "js/app.js"
+  "_app/*/**"
 ]
 
 self.addEventListener("install", installEvent => {
   installEvent.waitUntil(
-    caches.open(staticReflowReader).then(cache => {
+    caches.open(staticPlnnr).then(cache => {
       cache.addAll(assets)
     })
   )
