@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!-- manifest for PWA -->
 		<link rel="manifest" href="/plnnr/manifest.json?v=5" />
-		<link rel="manifest" href="/plnnr/serviceWorker.js"/>
+		<!--<link rel="manifest" href="/plnnr/serviceWorker.js"/> -->
 		<!-- ios support -->
 		<link rel="apple-touch-icon" href="/plnnr/images/icons/endless-16px.png" />
 		<link rel="apple-touch-icon" href="/plnnr/images/icons/endless-24px.png" />
@@ -24,20 +24,21 @@
 		<div id="svelte">%svelte.body%</div>
 		<script>
 
-
+/*
 			(async function(){
 
 							
 			if ("serviceWorker" in navigator) {
 			//	alert("yes");
-		/*	console.log(...performance.getEntriesByType('resource').map((r) => r.name));
+			console.log(...performance.getEntriesByType('resource').map((r) => r.name));
 				window.addEventListener("load", function() {
 				navigator.serviceWorker
-					.register("/plnnr/serviceWorker.js")
+					.register("/plnnr/service-worker.js")
 					.then(res => console.log("service worker registered"))
 					.catch(err => console.log("service worker not registered", err))
-				})*/
-				navigator.serviceWorker.register('/plnnr/serviceWorker.js', { scope: '/plnnr/' })
+				})
+				
+				navigator.serviceWorker.register('/plnnr/service-worker.js', { scope: '/plnnr/' })
         .then((registration) => {
             const data = {
                 type: 'CACHE_URLS',
@@ -49,8 +50,9 @@
             navigator.serviceWorker.controller.postMessage(data);
         })
         .catch((err) => console.log('SW registration FAIL:', err));
+
 			}
-			})();
+			})();*/
 		</script>
 	</body>
 </html>

@@ -1,6 +1,6 @@
 <script>
 	import {onMount} from 'svelte';
-	import TileDate from './TileDate.svelte';
+	import TileDate from './component/_TileDate.svelte';
 	
 	const map_month = new Map();
 	map_month.set(0,'January');

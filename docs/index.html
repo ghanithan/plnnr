@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!-- manifest for PWA -->
 		<link rel="manifest" href="/plnnr/manifest.json?v=5" />
-		<link rel="manifest" href="/plnnr/serviceWorker.js"/>
+		<!--<link rel="manifest" href="/plnnr/serviceWorker.js"/> -->
 		<!-- ios support -->
 		<link rel="apple-touch-icon" href="/plnnr/images/icons/endless-16px.png" />
 		<link rel="apple-touch-icon" href="/plnnr/images/icons/endless-24px.png" />
@@ -22,15 +22,15 @@
 
 		
 
-		<link rel="modulepreload" href="/plnnr/_app/start-8218d252.js">
+		<link rel="modulepreload" href="/plnnr/_app/start-37ffa83d.js">
 		<link rel="modulepreload" href="/plnnr/_app/chunks/vendor-3eb577cd.js">
 		<link rel="modulepreload" href="/plnnr/_app/layout.svelte-8217da89.js">
-		<link rel="modulepreload" href="/plnnr/_app/pages/index.svelte-e70a8585.js">
+		<link rel="modulepreload" href="/plnnr/_app/pages/index.svelte-896d044b.js">
 		<link rel="stylesheet" href="/plnnr/_app/assets/start-61d1577b.css">
 		<link rel="stylesheet" href="/plnnr/_app/assets/pages/index.svelte-dc4ab6ab.css">
 
 		<script type="module">
-			import { start } from "/plnnr/_app/start-8218d252.js";
+			import { start } from "/plnnr/_app/start-37ffa83d.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/plnnr","assets":""},
@@ -44,7 +44,7 @@
 					error: null,
 					nodes: [
 						import("/plnnr/_app/layout.svelte-8217da89.js"),
-						import("/plnnr/_app/pages/index.svelte-e70a8585.js")
+						import("/plnnr/_app/pages/index.svelte-896d044b.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -54,6 +54,10 @@
 					}
 				}
 			});
+		</script><script>
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker.register('/service-worker.js');
+			}
 		</script>
 	</head>
 	<body>
@@ -62,7 +66,7 @@
 
 <p>trying to build calendar</p>
 
-<p>Tue Dec 07 2021 18:37:16 GMT+0530 (India Standard Time)
+<p>Tue Dec 07 2021 19:08:11 GMT+0530 (India Standard Time)
 <br></p>
 
 
@@ -97,20 +101,21 @@
 		</div>
 		<script>
 
-
+/*
 			(async function(){
 
 							
 			if ("serviceWorker" in navigator) {
 			//	alert("yes");
-		/*	console.log(...performance.getEntriesByType('resource').map((r) => r.name));
+			console.log(...performance.getEntriesByType('resource').map((r) => r.name));
 				window.addEventListener("load", function() {
 				navigator.serviceWorker
-					.register("/plnnr/serviceWorker.js")
+					.register("/plnnr/service-worker.js")
 					.then(res => console.log("service worker registered"))
 					.catch(err => console.log("service worker not registered", err))
-				})*/
-				navigator.serviceWorker.register('/plnnr/serviceWorker.js', { scope: '/plnnr/' })
+				})
+				
+				navigator.serviceWorker.register('/plnnr/service-worker.js', { scope: '/plnnr/' })
         .then((registration) => {
             const data = {
                 type: 'CACHE_URLS',
@@ -122,8 +127,9 @@
             navigator.serviceWorker.controller.postMessage(data);
         })
         .catch((err) => console.log('SW registration FAIL:', err));
+
 			}
-			})();
+			})();*/
 		</script>
 	</body>
 </html>
