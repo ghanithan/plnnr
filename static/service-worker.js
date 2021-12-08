@@ -3,7 +3,7 @@ import { build, files, timestamp } from '$service-worker';
 
 
 const staticPlnnr = "plnnr-pwa-v1"
-const assets = [...build, ...files];
+const assets = [...build];
 
 self.addEventListener("install", installEvent => {
   installEvent.waitUntil(
