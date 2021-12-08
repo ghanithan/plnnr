@@ -3,7 +3,7 @@ import { build, files, timestamp } from '$service-worker';
 
 
 const staticPlnnr = "plnnr-pwa-v1"
-const assets = [...build];
+/*const assets = [...build];
 
 self.addEventListener("install", installEvent => {
   installEvent.waitUntil(
@@ -11,9 +11,9 @@ self.addEventListener("install", installEvent => {
       cache.addAll(assets)
     })
   )
-})
+})*/
 
-/*
+
 self.addEventListener('install', (event) => {
   event.waitUntil(self.skipWaiting());
 });
@@ -28,7 +28,7 @@ self.addEventListener('message', (event) => {
               })
       );
   }
-});*/
+});
 
 self.addEventListener("fetch", fetchEvent => {
     fetchEvent.respondWith(

@@ -62,7 +62,7 @@
 
 <p>trying to build calendar</p>
 
-<p>Wed Dec 08 2021 08:01:04 GMT+0530 (India Standard Time)
+<p>Wed Dec 08 2021 08:05:22 GMT+0530 (India Standard Time)
 <br></p>
 
 
@@ -104,15 +104,16 @@
 			if ("serviceWorker" in navigator) {
 			//	alert("yes");
 			console.log(...performance.getEntriesByType('resource').map((r) => r.name));
-				window.addEventListener("load", function() {
+		/*		window.addEventListener("load", function() {
 				navigator.serviceWorker
 					.register("/plnnr/service-worker.js")
 					.then(res => console.log("service worker registered"))
 					.catch(err => console.log("service worker not registered", err))
 				})
+				*/
 				
 				
-		/*		navigator.serviceWorker.register('/plnnr/service-worker.js', { scope: '/plnnr/' })
+				navigator.serviceWorker.register('/plnnr/service-worker.js', { scope: '/plnnr/' })
         .then((registration) => {
             const data = {
                 type: 'CACHE_URLS',
@@ -124,7 +125,7 @@
             navigator.serviceWorker.controller.postMessage(data);
         })
         .catch((err) => console.log('SW registration FAIL:', err));
-		*/
+		
 
 			}
 			})();
