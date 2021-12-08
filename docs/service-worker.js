@@ -1,5 +1,5 @@
 
-import { build, files, timestamp } from '$service-worker';
+//import { build, files, timestamp } from '$service-worker';
 
 
 const staticPlnnr = "plnnr-pwa-v1"
