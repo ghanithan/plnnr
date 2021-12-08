@@ -15,7 +15,10 @@ const config = {
 		paths: { 
 			base: dev ? '' :"/plnnr" 
 		},
-		
+	/*	serviceWorker: {
+			files: (filepath) => !/\.DS_STORE/.test(filepath)
+		},
+		*/
 	
 		
 	}
