@@ -13,6 +13,20 @@
         );
 
     }
+
+    function changeMonth(){
+        
+        let action = -1;
+        if(id > 15){
+            action = 1;
+        }
+        dispatch('changeMonth',{
+            change: action,
+            date: id, isToday: isToday, 
+            content: content, day: day
+        });
+       
+    }
         
  </script>
     
@@ -22,7 +36,7 @@
             {:else if enable}
                     <span class= "date" on:click={dateClicked}>{id}</span> 
             {:else}
-                <span class= "date other" on:click={dateClicked}>{id}</span> 
+                <span class= "date other" on:click={changeMonth}>{id}</span> 
             {/if}
     
     <style>

@@ -1,6 +1,7 @@
 <script>
 import {createEventDispatcher} from 'svelte'
-import {clickOutside} from '../js/clickOutside'
+import {clickOutside} from '../actions/clickOutside'
+import {fade} from 'svelte/transition';
 
   export let card;
 
@@ -15,7 +16,8 @@ import {clickOutside} from '../js/clickOutside'
 </script>
 
 
-<div class="container" >
+<!-- svelte-ignore missing-declaration -->
+<div class="container" transition:fade>
   <div class="card" use:clickOutside on:outclick={returnToMain}>
     <ul>
       <li>{card.date} </li>
@@ -40,24 +42,23 @@ import {clickOutside} from '../js/clickOutside'
   backdrop-filter: blur(5px);
   z-index: 1;
   position: absolute;
-
+  
 }
 
 .card {
 
             height: auto;
             width: 20rem;
-            padding: 5rem;
+            padding: 1rem;
             position: relative;
-
-            margin: 5rem auto auto auto;
+            border-radius: 1rem;
+            margin: 15rem auto auto auto;
             font-size: 16px;
             letter-spacing: -1px;
             border: 1px solid #e6e4e4;
             background-color: white;
             padding-right: 4px;
             font-weight: 700;
-           
             box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     
         }

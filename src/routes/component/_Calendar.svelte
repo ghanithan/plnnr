@@ -1,9 +1,8 @@
 <script>
 	import {onMount} from 'svelte';
 	import TileDate from './_TileDate.svelte';
-    import Frost from './_Frost.svelte'
-import { component_subscribe } from 'svelte/internal';
-	
+    import OverlayCard from './_OverlayCard.svelte'
+
 	const map_month = new Map();
 	map_month.set(0,'January');
 	map_month.set(1,'February');
@@ -229,12 +228,22 @@ function displayHome(event){
 	console.log(event.detail);
 }
 
+function propogate(event){
+	console.log(event)
+	if(event.detail.change > 0){
+		nextMonth();
+	}else{
+		previousMonth();
+	}
+	// overlayCard(event);
+}
 
 
 </script>
 
 {#if frostCard.date != disable.date}
-	<Frost card={frostCard} on:returnToMain={displayHome}/>
+	<OverlayCard card={frostCard} on:returnToMain={displayHome}
+	/>
 {/if}
 
 
@@ -284,7 +293,7 @@ previous year
 	
 {#each display_calendar as week}
 	{#each week as day}
-	<TileDate {...day} on:dateClicked={overlayCard}/>	
+	<TileDate {...day} on:dateClicked={overlayCard} on:changeMonth={propogate}/>	
 		
 			
 	{/each}

@@ -3,6 +3,7 @@
 
 
 const staticPlnnr = "plnnr-pwa-v1"
+var assets = "";
 /*const assets = [...build];
 
 self.addEventListener("install", installEvent => {
@@ -15,7 +16,7 @@ self.addEventListener("install", installEvent => {
 
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(self.skipWaiting());
+  event.waitUntil(self.skipWaiting);
 });
 
 
@@ -24,7 +25,7 @@ self.addEventListener('message', (event) => {
       event.waitUntil(
           caches.open(staticPlnnr)
               .then( (cache) => {
-                  return cache.addAll(event.data.payload);
+                   cache.addAll(event.data.payload);
               })
       );
   }

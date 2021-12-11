@@ -22,15 +22,15 @@
 
 		
 
-		<link rel="modulepreload" href="/plnnr/_app/start-231d9f70.js">
-		<link rel="modulepreload" href="/plnnr/_app/chunks/vendor-ac831323.js">
-		<link rel="modulepreload" href="/plnnr/_app/layout.svelte-f2f5c477.js">
-		<link rel="modulepreload" href="/plnnr/_app/pages/index.svelte-9e2c1a35.js">
+		<link rel="modulepreload" href="/plnnr/_app/start-2a8600bb.js">
+		<link rel="modulepreload" href="/plnnr/_app/chunks/vendor-671d2724.js">
+		<link rel="modulepreload" href="/plnnr/_app/layout.svelte-69006d95.js">
+		<link rel="modulepreload" href="/plnnr/_app/pages/index.svelte-0583bb54.js">
 		<link rel="stylesheet" href="/plnnr/_app/assets/start-61d1577b.css">
-		<link rel="stylesheet" href="/plnnr/_app/assets/pages/index.svelte-c78e3700.css">
+		<link rel="stylesheet" href="/plnnr/_app/assets/pages/index.svelte-b47bbe8b.css">
 
 		<script type="module">
-			import { start } from "/plnnr/_app/start-231d9f70.js";
+			import { start } from "/plnnr/_app/start-2a8600bb.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/plnnr","assets":""},
@@ -43,8 +43,8 @@
 					status: 200,
 					error: null,
 					nodes: [
-						import("/plnnr/_app/layout.svelte-f2f5c477.js"),
-						import("/plnnr/_app/pages/index.svelte-9e2c1a35.js")
+						import("/plnnr/_app/layout.svelte-69006d95.js"),
+						import("/plnnr/_app/pages/index.svelte-0583bb54.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -65,7 +65,7 @@
 
 <div class="landing svelte-fy5pnn"><p>trying to build calendar</p>
 
-<p>Sat Dec 11 2021 08:57:01 GMT+0530 (India Standard Time)
+<p>Sat Dec 11 2021 20:00:37 GMT+0530 (India Standard Time)
 <br></p>
 
 
@@ -107,7 +107,8 @@
 							
 			if ("serviceWorker" in navigator) {
 			//	alert("yes");
-			console.log(...performance.getEntriesByType('resource').map((r) => r.name));
+			console.log('hi');
+			console.log(...performance.getEntriesByType('resource').map((r) => r.name.replace('http://','').replace('https://','').split(/[/?#]/)[0]));
 		/*		window.addEventListener("load", function() {
 				navigator.serviceWorker
 					.register("/plnnr/service-worker.js")
@@ -123,7 +124,7 @@
                 type: 'CACHE_URLS',
                 payload: [
                     location.href,
-                    ...performance.getEntriesByType('resource').map((r) => r.name)
+                    ...performance.getEntriesByType('resource').map((r) => r.name.replace('http://','').replace('https://','').split(/[/?#]/)[0])
                 ]
             };
             navigator.serviceWorker.controller.postMessage(data);
