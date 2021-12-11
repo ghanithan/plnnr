@@ -1,15 +1,28 @@
 <script>
+    import { createEventDispatcher } from 'svelte';
     export let id, content, enable, isToday, day;
+    
+    const dispatch = createEventDispatcher();
+
+    function dateClicked(){
+        dispatch('dateClicked' ,{
+            date: id, isToday: isToday, 
+            content: content, day: day
+        }
+
+        );
+
+    }
         
-    </script>
+ </script>
     
             {#if isToday}
-                <span class= "date today">{id}</span>
+                <span class= "date today" on:click={dateClicked}>{id}</span>
                 
             {:else if enable}
-                    <span class= "date">{id}</span> 
+                    <span class= "date" on:click={dateClicked}>{id}</span> 
             {:else}
-                <span class= "date other">{id}</span> 
+                <span class= "date other" on:click={dateClicked}>{id}</span> 
             {/if}
     
     <style>
