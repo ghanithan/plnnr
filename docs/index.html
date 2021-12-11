@@ -65,7 +65,7 @@
 
 <div class="landing svelte-fy5pnn"><p>trying to build calendar</p>
 
-<p>Sat Dec 11 2021 20:00:37 GMT+0530 (India Standard Time)
+<p>Sat Dec 11 2021 20:30:36 GMT+0530 (India Standard Time)
 <br></p>
 
 
@@ -107,8 +107,8 @@
 							
 			if ("serviceWorker" in navigator) {
 			//	alert("yes");
-			console.log('hi');
-			console.log(...performance.getEntriesByType('resource').map((r) => r.name.replace('http://','').replace('https://','').split(/[/?#]/)[0]));
+			console.log(location.href);
+			console.log(...performance.getEntriesByType('resource').map((r) => '/'.concat(r.name.replace('http://','').replace('https://','').split(/[/?#]/).slice(1).join('/'))));
 		/*		window.addEventListener("load", function() {
 				navigator.serviceWorker
 					.register("/plnnr/service-worker.js")
@@ -124,7 +124,7 @@
                 type: 'CACHE_URLS',
                 payload: [
                     location.href,
-                    ...performance.getEntriesByType('resource').map((r) => r.name.replace('http://','').replace('https://','').split(/[/?#]/)[0])
+                    ...performance.getEntriesByType('resource').map((r) => '/'.concat(r.name.replace('http://','').replace('https://','').split(/[/?#]/).slice(1).join('/')))
                 ]
             };
             navigator.serviceWorker.controller.postMessage(data);

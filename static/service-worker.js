@@ -25,6 +25,7 @@ self.addEventListener('message', (event) => {
       event.waitUntil(
           caches.open(staticPlnnr)
               .then( (cache) => {
+                  console.log(event.data.payload)
                    cache.addAll(event.data.payload);
               })
       );
