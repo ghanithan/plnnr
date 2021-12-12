@@ -2,6 +2,8 @@
 import {createEventDispatcher} from 'svelte'
 import {clickOutside} from '../actions/clickOutside'
 import {fade} from 'svelte/transition';
+import {fadeScale} from '../transitions/fadeScale'
+import {cubicInOut} from 'svelte/easing'
 
   export let card;
 
@@ -18,7 +20,11 @@ import {fade} from 'svelte/transition';
 
 <!-- svelte-ignore missing-declaration -->
 <div class="container" transition:fade>
-  <div class="card" use:clickOutside on:outclick={returnToMain}>
+  <div class="card" use:clickOutside on:outclick={returnToMain} 
+  transition:fadeScale={{delay:50,
+    duration: 250,
+    easing: cubicInOut,
+    baseScale: 0.5}}>
     <ul>
       <li>{card.date} </li>
       <li>{card.content} </li>
