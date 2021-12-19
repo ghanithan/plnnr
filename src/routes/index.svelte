@@ -178,6 +178,7 @@ function displayHome(event){
         text-orientation: upright;
         letter-spacing: 1rem;
         text-align: center;
+        text-transform: uppercase;
     }
     .sideContainer:hover{
             box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
