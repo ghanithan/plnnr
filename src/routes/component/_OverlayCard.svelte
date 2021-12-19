@@ -35,9 +35,10 @@ import {cubicInOut} from 'svelte/easing'
 </div>
 
 <style>
-    .container {
+  .container {
    width: 100vw;
   height: 100vh;
+  top:0;
 
   margin: auto;
   

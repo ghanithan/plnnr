@@ -1,38 +1,8 @@
 <script>
 	import {onMount} from 'svelte';
 	import TileDate from './_TileDate.svelte';
-    import OverlayCard from './_OverlayCard.svelte'
+    import {map_days,map_month} from '../js/names';
 
-	const map_month = new Map();
-	map_month.set(0,'January');
-	map_month.set(1,'February');
-	map_month.set(2, 'March');
-	map_month.set(3,'April');
-	map_month.set(4,'May');
-	map_month.set(5,'June');
-	map_month.set(6,'July');
-	map_month.set(7,'August');
-	map_month.set(8,'September');
-	map_month.set(9,'October');
-	map_month.set(10,'November');
-	map_month.set(11,'December');
-
- const map_days = new Map();
-/*	map_days.set(0,'Sunday');
-	map_days.set(1,'Monday');
-	map_days.set(2,'Tuesday');
-	map_days.set(3,'Wednesday');
-	map_days.set(4,'Thursday');
-	map_days.set(5,'Friday');
-	map_days.set(6,'Saturday');*/
-	
-	map_days.set(0,'Sun');
-	map_days.set(1,'Mon');
-	map_days.set(2,'Tue');
-	map_days.set(3,'Wed');
-	map_days.set(4,'Thu');
-	map_days.set(5,'Fri');
-	map_days.set(6,'Sat');
 	
 	let week_label = [ ...map_days.values() ]; 
 	//console.log(week_label);
@@ -40,11 +10,11 @@
 
     let date,day;
 		let today_date,today_month,today_year;
-	let calendar, calendar_day = 0, calendar_month= 0, calendar_days = 0,calendar_year=0, calendar_date = 0;
+	let calendar, calendar_day = 0, calendar_date = 0 , calendar_days = 0;
+	export let calendar_month= 0,calendar_year=0;
 	let calendar_dayName="", calendar_monthName="";
-	let className="landing";
-	const disable = {date: -1};
-	let frostCard =  disable;
+	let className;
+
 	
 /*	let display_calendar = [[1,2,3,4,5,6,7],
 							[8,9,10,11,12,13,14],
@@ -214,19 +184,7 @@ function nextMonth() {
 	
 }
 
-$: frostCard = frostCard;
-function overlayCard(event){
-	//console.log(event.detail);
-	frostCard = event.detail;
- console.log(frostCard)
-}
 
-function displayHome(event){
-	if(event.detail.action == true){
-		frostCard = disable;
-	}
-	console.log(event.detail);
-}
 
 function propogate(event){
 	console.log(event)
@@ -241,40 +199,14 @@ function propogate(event){
 
 </script>
 
-{#if frostCard.date != disable.date}
-	<OverlayCard card={frostCard} on:returnToMain={displayHome}
-	/>
-{/if}
 
 
 <div class={className} >
-<p>trying to build calendar</p>
 
-<p>
-{date}
-<br>
 	
-</p>
 
 
-<button on:click={previousMonth}>
-previous month 
-</button>
 
-
-<button on:click={nextMonth}>
-	next month 
-</button>
-
-
-<button on:click={() => {calendar_year -= 1; } }>
-previous year 
-</button>
-
-
-<button on:click={() => {calendar_year += 1;}}>
-	next year 
-</button>
 
 
 <header>
@@ -293,7 +225,7 @@ previous year
 	
 {#each display_calendar as week}
 	{#each week as day}
-	<TileDate {...day} on:dateClicked={overlayCard} on:changeMonth={propogate}/>	
+	<TileDate {...day} on:dateClicked on:changeMonth={propogate}/>	
 		
 			
 	{/each}
@@ -340,11 +272,5 @@ h4 {
 	}
 
     
- .landing{
-	 z-index: -1;
-	 top: 0;
-	 position: absolute;
-	 width: 100vw;
-	 height: 100vh;
- }
+ 
 </style>
