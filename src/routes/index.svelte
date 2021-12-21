@@ -3,13 +3,23 @@
 import Calendar from './component/_Calendar.svelte';
 import OverlayCard from './component/_OverlayCard.svelte'
 import {map_days,map_month} from './js/names';
+import { spring } from "svelte/motion";
+import swipe from './actions/swipe';
+import { prevent_default } from 'svelte/internal';
 var date = new Date();
 let calendar_month,calendar_year;
 const disable = {date: -1};
 let frostCard =  disable;
 
+let coords = spring({ x: 0, y: 0 }, { stiffness: 0.05, damping: 0.5 });
+
+	let w;
+	let side="",content="hi";
 
 
+    $: side = ($coords.x >= (w/4)*1) ? "left" : (( $coords.x <= -(w/2)*1) ? "right": "");
+	$: side === 'left'? leftSwipe(): '';
+	$: side === 'right'? rightSwipe(): '';
 
 $: calendar_month = calendar_month;
 $: calendar_year = calendar_year;
@@ -24,6 +34,18 @@ onMount(() => {
 		};
 	});
 
+function leftSwipe(){
+    previousMonth();
+    prevent_default();
+    handleSlideEnd();
+}
+
+
+function rightSwipe(){
+    nextMonth();
+    prevent_default();
+    handleSlideEnd();
+}
 
  function previousMonth(){
 	 if(calendar_month !=0){
@@ -62,6 +84,31 @@ function displayHome(event){
 }
 
 
+	function handleSlideStart() {
+		coords.stiffness = coords.damping = 1; 
+	}
+
+	function handleSlideMove(event) {
+		coords.update($coords => ({
+			x: $coords.x + event.detail.dx,
+			y: $coords.y + event.detail.dy
+		}));
+	}
+
+	function handleSlideEnd(event) {
+		coords.stiffness = 0.05;
+		coords.damping = 0.5;
+		coords.set({ x: 0, y: 0 });
+	}
+	
+	function handledClicked(){
+		
+		
+	}
+	
+	//$: console.log($coords)
+	$: console.log(w)
+	
 
 </script>
 
@@ -100,16 +147,37 @@ function displayHome(event){
     </button>
 </div>
 <div class="swipeContainer">
-    <div class="sideContainer" on:click={previousMonth}>
-        <span class="verticalText">
+    <div class="sideContainer" on:click={previousMonth} 
+            bind:offsetWidth = {w}
+            use:swipe
+        on:slidestart = {()=>{handleSlideStart }}
+        on:slidemove={handleSlideMove}
+            on:slideend={handleSlideEnd}
+        on:clicked={handledClicked}
+        style="transform: translate3d({$coords.x}px, 0, 0)">
+        <span class="verticalText right">
             {map_month.get(calendar_month == 0 ? 11 : calendar_month -1)}
         </span>
     </div>
-    <div class="container">
+    <div class="container"
+            bind:offsetWidth = {w}
+            use:swipe
+        on:slidestart = {()=>{handleSlideStart }}
+        on:slidemove={handleSlideMove}
+            on:slideend={handleSlideEnd}
+        on:clicked={handledClicked}
+        style="transform: translate3d({$coords.x}px, 0, 0)">
         <Calendar class="landing" on:dateClicked={overlayCard} bind:calendar_month={calendar_month} bind:calendar_year={calendar_year}/>
     </div>
-    <div class="sideContainer" on:click={nextMonth}>
-        <span class="verticalText">
+    <div class="sideContainer" on:click={nextMonth}
+            bind:offsetWidth = {w}
+            use:swipe
+        on:slidestart = {()=>{handleSlideStart }}
+        on:slidemove={handleSlideMove}
+            on:slideend={handleSlideEnd}
+        on:clicked={handledClicked}
+        style="transform: translate3d({$coords.x}px, 0, 0)">
+        <span class="verticalText left">
            { map_month.get(calendar_month == 11 ? 0: calendar_month +1)}
         </span>
     </div>
@@ -121,10 +189,28 @@ function displayHome(event){
         overflow-x: hidden;
     }
     .container{
-        position: relative;
-        width: 90vw;
+        
         padding-left: 1rem;
         padding-right: 1rem;
+
+        position: relative;
+        
+       
+        border: 1px solid #e6e4e4;
+       margin-top: 5.5rem;
+        
+        
+        justify-content:space-evenly;
+        padding: 0.5rem;
+        
+        cursor: -webkit-grab;
+        user-select: none;
+		pointer-events: auto;
+
+        min-width: 80vw;
+		height: 100%;
+		
+		scroll-snap-align: start;
         
     }
 
@@ -141,22 +227,29 @@ function displayHome(event){
         position: relative;
         display: flex ;
        
-        overflow-x: visible;
+        overflow-x: hidden;
         padding-top: 1rem;
         
         width: 100vw;
-        align-content: space-between;
-        justify-content:space-between;
+        align-content: space-around;
+        justify-content:space-around;
+
+      
+		scroll-snap-type: x mandatory;	
+		
+		user-select: none;
+		-webkit-overflow-scrolling: touch;
+		pointer-events: auto;
         
     }
 
     .sideContainer{
         position: relative;
         
-        width: 3vw;
+       
         border: 1px solid #e6e4e4;
        margin-top: 5.5rem;
-        display: flex;
+        
         
         justify-content:space-evenly;
         padding: 0.5rem;
@@ -164,8 +257,21 @@ function displayHome(event){
         cursor: -webkit-grab;
         user-select: none;
 		pointer-events: auto;
-    }
 
+        min-width: 80vw;
+		height: inherit;
+        
+		
+		scroll-snap-align: start;
+	
+
+    }
+    .left{
+        float: left;
+    }
+    .right{
+        float:right;
+    }
    :global(landing){
         z-index: -1;
         top: 0;
@@ -179,6 +285,7 @@ function displayHome(event){
         letter-spacing: 1rem;
         text-align: center;
         text-transform: uppercase;
+
     }
     .sideContainer:hover{
             box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
