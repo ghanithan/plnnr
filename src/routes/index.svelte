@@ -17,7 +17,7 @@ let coords = spring({ x: 0, y: 0 }, { stiffness: 0.05, damping: 0.5 });
 	let side="",content="hi";
 
 
-    $: side = ($coords.x >= (w/4)*1) ? "left" : (( $coords.x <= -(w/3)*1) ? "right": "");
+    $: side = ($coords.x >= (w/4)*1) ? "left" : (( $coords.x <= -(w/4)*1) ? "right": "");
 	$: side === 'left'? leftSwipe(): '';
 	$: side === 'right'? rightSwipe(): '';
 
