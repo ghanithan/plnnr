@@ -16,8 +16,14 @@ export default function OverlayCard({ date, onClose }) {
   }
 
   return (
-    <div className="overlay" onClick={onClose}>
-      <div className="card" onClick={e => e.stopPropagation()}>
+    <div
+      className="fixed inset-0 w-screen h-screen backdrop-blur flex items-center justify-center"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white p-4 rounded-lg shadow"
+        onClick={e => e.stopPropagation()}
+      >
         <h4>{date}</h4>
         <textarea
           value={value}
