@@ -17,7 +17,7 @@ npm run dev
 The Tauri development app can be started with:
 
 ```bash
-npm run tauri:dev
+npm run tauri dev
 ```
 
 ## Build
@@ -26,5 +26,5 @@ To create a release build of the frontend and package the Tauri application:
 
 ```bash
 npm run build
-npm run tauri:build
+npm run tauri build
 ```
