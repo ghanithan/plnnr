@@ -57,15 +57,15 @@ export default function Calendar({ onSelect }) {
   }
 
   return (
-    <div>
-      <header>
-        <button onClick={prevMonth}>Prev</button>
+    <div className="p-4">
+      <header className="flex items-center justify-between mb-2">
+        <button className="px-2 py-1 bg-gray-200" onClick={prevMonth}>Prev</button>
         <h4>{monthNames[month]} {year}</h4>
-        <button onClick={nextMonth}>Next</button>
+        <button className="px-2 py-1 bg-gray-200" onClick={nextMonth}>Next</button>
       </header>
-      <div className="calendar">
+      <div className="grid grid-cols-7 gap-1">
         {dayNames.map(d => (
-          <div key={d} className="tile"><strong>{d}</strong></div>
+          <div key={d} className="h-[50px] p-2 border border-[#e6e4e4] text-right cursor-pointer"><strong>{d}</strong></div>
         ))}
         {weeks.map((week, i) => (
           week.map(day => (
