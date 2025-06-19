@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.tile {
+  height: 50px;
+  padding: 0.5rem;
+  border: 1px solid #e6e4e4;
+  text-align: right;
+  cursor: pointer;
+}
+
+.tile.other {
+  opacity: 0.4;
+}
+
+.tile.today {
+  color: #5286fa;
+  background: #c4d9fd;
+  border-color: currentColor;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  background: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0,0,0,0.16) 0px 3px 6px, rgba(0,0,0,0.23) 0px 3px 6px;
+}

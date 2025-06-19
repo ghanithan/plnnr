@@ -1,0 +1,24 @@
+{
+  "package": {
+    "productName": "Plnnr",
+    "version": "0.1.0"
+  },
+  "build": {
+    "beforeBuildCommand": "npm run build",
+    "beforeDevCommand": "npm run dev",
+    "devPath": "http://localhost:5173",
+    "distDir": "../dist"
+  },
+  "tauri": {
+    "bundle": {
+      "identifier": "com.example.plnnr"
+    },
+    "windows": [
+      {
+        "title": "Plnnr",
+        "width": 800,
+        "height": 600
+      }
+    ]
+  }
+}
